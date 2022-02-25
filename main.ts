@@ -1,36 +1,38 @@
+radio.onReceivedNumber(function (receivedNumber) {
+    if (receivedNumber == 1) {
+        serial.writeLine("Connected")
+    } else {
+        servos.P1.stop()
+    }
+})
 radio.onReceivedValueDeprecated(function (name, value) {
-    if (name == "leftf") {
+    if (name == "left") {
         led.toggle(0, 0)
         led.toggle(0, 0)
-        if (value < 20) {
-            servos.P1.stop()
-        } else {
-            servos.P1.run(value)
+        if (value > 20 || value < -20) {
+            servos.P1.setAngle(value)
             led.plot(0, 0)
             led.unplot(4, 0)
+        } else {
+            servos.P1.stop()
         }
-    } else if (name == "leftr") {
-        servos.P1.run(0 - value)
-        led.plot(0, 0)
-        led.unplot(4, 0)
     } else if (name == "rightf") {
         led.toggle(1, 0)
         if (value < 20) {
             servos.P0.stop()
         } else {
-            servos.P0.run(value)
+            servos.P0.setAngle(value)
             led.plot(4, 0)
             led.unplot(0, 0)
         }
     } else if (name == "rightr") {
-        servos.P0.run(0 - value)
+        servos.P0.setAngle(0 - value)
         led.plot(4, 0)
         led.unplot(0, 0)
+    } else if (name == "move") {
+    	
     } else {
-        servos.P0.stop()
-        servos.P1.stop()
-        DFRobotMaqueenPlus.mototStop(Motors.M1)
-        DFRobotMaqueenPlus.mototStop(Motors.M2)
+    	
     }
 })
 input.onButtonPressed(Button.A, function () {
@@ -46,12 +48,12 @@ basic.showLeds(`
     . . . . .
     . . # . .
     . . . . .
-    . . . . .
+    # . . . .
     `)
 DFRobotMaqueenPlus.mototRun(Motors.M2, Dir.CW, 0)
 DFRobotMaqueenPlus.mototRun(Motors.M1, Dir.CW, 0)
-servos.P1.run(0)
-servos.P0.run(0)
+servos.P0.setAngle(90)
+servos.P1.setAngle(90)
 radio.setGroup(2)
 basic.showString("1 j ")
 /**
