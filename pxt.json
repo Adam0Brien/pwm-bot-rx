@@ -6,7 +6,10 @@
         "radio": "*",
         "microphone": "*",
         "MaqueenPlus": "github:dfrobot/pxt-dfrobot-maqueenplus#v1.4.2",
-        "servo": "*"
+        "servo": "*",
+        "pxt-kitronik-motor-driver": "github:kitronikltd/pxt-kitronik-motor-driver#v0.0.7",
+        "pxt-kitronik-robotics-board": "github:kitronikltd/pxt-kitronik-robotics-board#v0.0.5",
+        "envirobit": "github:pimoroni/pxt-envirobit#v0.0.5"
     },
     "files": [
         "main.blocks",
