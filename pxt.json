@@ -1,5 +1,5 @@
 {
-    "name": "PWM-bot-rx",
+    "name": "PWM-bot-reciever",
     "description": "",
     "dependencies": {
         "core": "*",
